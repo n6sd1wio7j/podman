@@ -39,11 +39,11 @@ all: binaries ## Build all binaries
 binaries: podman podman-remote ## Build podman and podman-remote binaries
 
 .PHONY: podman
-podman: ## Build the podman binary
+podman: $(BIN_DIR) ## Build the podman binary
 	$(GO) build $(GOFLAGS) $(GO_LDFLAGS) "$(LDFLAGS)" -o $(BIN_DIR)/$@ ./cmd/podman
 
 .PHONY: podman-remote
-podman-remote: ## Build the podman-remote binary
+podman-remote: $(BIN_DIR) ## Build the podman-remote binary
 	$(GO) build $(GOFLAGS) $(GO_LDFLAGS) "$(LDFLAGS)" -tags remote -o $(BIN_DIR)/$@ ./cmd/podman
 
 .PHONY: test
