@@ -53,12 +53,13 @@ test: unit-test ## Run all tests
 # Use -count=1 to disable test result caching so tests always run fresh
 # Using -race to catch data races during local development
 # Note: removed -v flag here to reduce noise; use `make unit-test-verbose` for full output
+# Personal preference: limit parallelism to avoid overwhelming my machine during dev
 unit-test: ## Run unit tests
-	$(GO) test -count=1 -race ./...
+	$(GO) test -count=1 -race -p 4 ./...
 
 .PHONY: unit-test-verbose
 unit-test-verbose: ## Run unit tests with verbose output
-	$(GO) test -v -count=1 -race ./...
+	$(GO) test -v -count=1 -race -p 4 ./...
 
 .PHONY: integration-test
 integration-test: ## Run integration tests
