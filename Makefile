@@ -51,8 +51,9 @@ test: unit-test ## Run all tests
 
 .PHONY: unit-test
 # Use -count=1 to disable test result caching so tests always run fresh
+# Using -race to catch data races during local development
 unit-test: ## Run unit tests
-	$(GO) test -v -count=1 ./...
+	$(GO) test -v -count=1 -race ./...
 
 .PHONY: integration-test
 integration-test: ## Run integration tests
