@@ -31,6 +31,8 @@ func main() {
 	if err := app.Execute(); err != nil {
 		// Always log the full error details to help with debugging,
 		// not just when log level is explicitly set to debug.
+		// NOTE: including the subcommand name makes it easier to grep logs
+		// when running multiple podman invocations in scripts.
 		logrus.Errorf("'podman %s' failed: %v", app.Subcommand(), err)
 		os.Exit(registry.GetExitCode())
 	}
