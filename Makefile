@@ -55,11 +55,11 @@ test: unit-test ## Run all tests
 # Note: removed -v flag here to reduce noise; use `make unit-test-verbose` for full output
 # Personal preference: limit parallelism to avoid overwhelming my machine during dev
 unit-test: ## Run unit tests
-	$(GO) test -count=1 -race -p 4 ./...
+	$(GO) test -count=1 -race -p 2 ./...
 
 .PHONY: unit-test-verbose
 unit-test-verbose: ## Run unit tests with verbose output
-	$(GO) test -v -count=1 -race -p 4 ./...
+	$(GO) test -v -count=1 -race -p 2 ./...
 
 .PHONY: integration-test
 integration-test: ## Run integration tests
@@ -95,7 +95,4 @@ install: binaries ## Install podman binaries
 .PHONY: uninstall
 uninstall: ## Uninstall podman binaries
 	rm -f $(DESTDIR)$(BINDIR)/podman
-	rm -f $(DESTDIR)$(BINDIR)/podman-remote
-
-$(BIN_DIR):
-	mkdir -p $@
+	rm -f $(DESTDIR)$(BINDIR)/p
