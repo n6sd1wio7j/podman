@@ -50,8 +50,9 @@ podman-remote: $(BIN_DIR) ## Build the podman-remote binary
 test: unit-test ## Run all tests
 
 .PHONY: unit-test
+# Use -count=1 to disable test result caching so tests always run fresh
 unit-test: ## Run unit tests
-	$(GO) test -v ./...
+	$(GO) test -v -count=1 ./...
 
 .PHONY: integration-test
 integration-test: ## Run integration tests
