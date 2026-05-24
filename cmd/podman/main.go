@@ -29,9 +29,9 @@ func main() {
 
 	app := registry.PodmanConfig()
 	if err := app.Execute(); err != nil {
-		if app.Config.LogLevel == "debug" {
-			logrus.Errorf("'podman %s' failed: %v", app.Subcommand(), err)
-		}
+		// Always log the full error details to help with debugging,
+		// not just when log level is explicitly set to debug.
+		logrus.Errorf("'podman %s' failed: %v", app.Subcommand(), err)
 		os.Exit(registry.GetExitCode())
 	}
 }
