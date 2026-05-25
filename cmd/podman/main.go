@@ -39,4 +39,8 @@ func main() {
 		logrus.Debugf("exiting with code %d", registry.GetExitCode())
 		os.Exit(registry.GetExitCode())
 	}
+
+	// Log successful completion at trace level; useful when tracing
+	// multi-step scripts to confirm each podman call finished cleanly.
+	logrus.Tracef("'podman %s' completed successfully", app.Subcommand())
 }
