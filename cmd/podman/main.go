@@ -40,8 +40,8 @@ func main() {
 		os.Exit(registry.GetExitCode())
 	}
 
-	// Log successful completion at debug level (changed from trace) so that
-	// successful completions are visible when running with --log-level=debug,
-	// which is more commonly used than trace during local development.
-	logrus.Debugf("'podman %s' completed successfully", app.Subcommand())
+	// Log successful completion at info level so that successful completions
+	// are always visible without needing a special log level flag.
+	// Useful when tailing logs across multiple concurrent podman calls.
+	logrus.Infof("'podman %s' completed successfully", app.Subcommand())
 }
