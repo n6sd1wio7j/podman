@@ -34,6 +34,9 @@ func main() {
 		// NOTE: including the subcommand name makes it easier to grep logs
 		// when running multiple podman invocations in scripts.
 		logrus.Errorf("'podman %s' failed: %v", app.Subcommand(), err)
+		// Also print the exit code so it's visible in logs without having
+		// to inspect the process exit status separately.
+		logrus.Debugf("exiting with code %d", registry.GetExitCode())
 		os.Exit(registry.GetExitCode())
 	}
 }
