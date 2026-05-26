@@ -40,8 +40,7 @@ func main() {
 		os.Exit(registry.GetExitCode())
 	}
 
-	// Log successful completion at info level so that successful completions
-	// are always visible without needing a special log level flag.
-	// Useful when tailing logs across multiple concurrent podman calls.
-	logrus.Infof("'podman %s' completed successfully", app.Subcommand())
+	// Only log successful completion at debug level to reduce noise in normal
+	// usage. Use --log-level=debug if you need to trace successful calls.
+	logrus.Debugf("'podman %s' completed successfully", app.Subcommand())
 }
